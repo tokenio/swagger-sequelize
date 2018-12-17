@@ -48,7 +48,7 @@ function getSequalizeType(swaggerPropertySchema) {
 	if (swaggerPropertySchema.properties) {
 		console.log('Warning: encountered', JSON.stringify(swaggerPropertySchema.properties));
 		console.log('Cannot handle complex subschemas (yet?), falling back to blob');
-		return Sequelize.BLOB;
+		return Sequelize.JSON;
 	}
 
 	if (swaggerPropertySchema.$ref) {
