@@ -21,7 +21,7 @@ var dialect = 'mysql';
  * @returns {*}
  */
 function setDialect(newDialect) {
-	if (['mysql', 'mariadb', 'sqlite', 'postgres', 'mssql'].indexOf(newDialect) === -1) {
+	if (['mysql', 'sqlite', 'postgres', 'mssql'].indexOf(newDialect) === -1) {
 		throw new Error('Unknown sequalize dialect');
 	}
 	dialect = newDialect;
@@ -152,7 +152,7 @@ function getSequalizeType(swaggerPropertySchema) {
 	}
 }
 
-function generate (schema) {
+function generate (schema, { autoIncrementPrimaryKey = false }) {
 	//poor mans deep-clone
 	var result = JSON.parse(JSON.stringify(schema.properties));
 
@@ -162,7 +162,7 @@ function generate (schema) {
 		// BEGIN: Promote Attribute to primaryKey with autoIncrement
 		if(propertySchema['x-primary-key'] === true) {
 			propertySchema.primaryKey = true;
-			propertySchema.autoIncrement = true;
+			propertySchema.autoIncrement = autoIncrementPrimaryKey;
 		}
 		// END: Promote Attribute to primaryKey with autoIncrement
 
