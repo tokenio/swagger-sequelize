@@ -12,6 +12,7 @@
  * @property {function} Sequelize.FLOAT
  * @property {function} Sequelize.INTEGER
  * @property {function} Sequelize.BIGINT
+ * @property {function} Sequelize.UUID
  */
 var Sequelize = require('sequelize');
 
@@ -83,6 +84,9 @@ function getSequalizeType(swaggerPropertySchema) {
 
 				case 'date':
 					return Sequelize.DATEONLY;
+
+        case 'uuid':
+          return Sequelize.UUID;
 
 				case 'date-time':
 					//return Sequelize.DATETIME; //not working?
