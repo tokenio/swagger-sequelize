@@ -82,11 +82,11 @@ function getSequalizeType(swaggerPropertySchema) {
 					}
 					return Sequelize.STRING.BINARY;
 
-				case 'date':
+                case 'date':
 					return Sequelize.DATEONLY;
 
-        case 'uuid':
-          return Sequelize.UUID;
+                case 'uuid':
+                    return Sequelize.UUID;
 
 				case 'date-time':
 					//return Sequelize.DATETIME; //not working?
@@ -174,6 +174,8 @@ function generate (schema, { autoIncrementPrimaryKey = false }) {
 		if (propertySchema.default) {
 			propertySchema.defaultValue = propertySchema.default;
 		}
+
+        console.log('propertySchema', propertySchema);
 	});
 
 	return result;
